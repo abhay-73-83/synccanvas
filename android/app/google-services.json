@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "787869482855",
+    "project_id": "synccanvas-4090c",
+    "storage_bucket": "synccanvas-4090c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787869482855:android:8fc56c9518ee6431e439c2",
+        "android_client_info": {
+          "package_name": "com.example.synccanvas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMFulRpskjVLef4soglXN1JbQC6vodVJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
