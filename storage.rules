@@ -1,0 +1,24 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper function to verify Firebase Authentication (including Anonymous Auth)
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Match room image uploads: /rooms/{roomCode}/images/{fileName}
+    match /rooms/{roomCode}/images/{fileName} {
+      // Authenticated users can view uploaded canvas images
+      allow read: if isAuthenticated();
+
+      // Authenticated users can upload images up to 10MB with image content-type
+      allow write: if isAuthenticated()
+        && request.resource.size < 10 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+
+      // Authenticated users can delete room images
+      allow delete: if isAuthenticated();
+    }
+  }
+}

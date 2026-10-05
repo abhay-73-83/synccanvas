@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to verify Firebase Authentication (including Anonymous Auth)
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Match room documents: /rooms/{roomCode}
+    match /rooms/{roomCode} {
+      // Authenticated users can read room metadata to join or watch active rooms
+      allow read: if isAuthenticated();
+
+      // Authenticated users can create new room documents with valid room schema
+      allow create: if isAuthenticated()
+        && request.resource.data.roomCode == roomCode
+        && request.resource.data.roomName is string
+        && request.resource.data.createdBy is string
+        && request.resource.data.participantCount is number;
+
+      // Authenticated users can update rooms (e.g. participant count increment/decrement)
+      allow update: if isAuthenticated()
+        && request.resource.data.roomCode == resource.data.roomCode;
+
+      // Authenticated users can delete rooms
+      allow delete: if isAuthenticated();
+
+      // Match canvasItems subcollection: /rooms/{roomCode}/canvasItems/{itemId}
+      match /canvasItems/{itemId} {
+        // Authenticated users can read canvas items in real-time
+        allow read: if isAuthenticated();
+
+        // Authenticated users can create valid canvas items (note, text, image, link)
+        allow create: if isAuthenticated()
+          && request.resource.data.type in ['note', 'text', 'image', 'link'];
+
+        // Authenticated users can update canvas items (positions x/y, content, color)
+        allow update: if isAuthenticated();
+
+        // Authenticated users can delete canvas items
+        allow delete: if isAuthenticated();
+      }
+    }
+  }
+}

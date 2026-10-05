@@ -1,0 +1,36 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "synccanvas-4090c",
+          "appId": "1:787869482855:android:8fc56c9518ee6431e439c2",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "synccanvas-4090c",
+          "appId": "1:787869482855:ios:bd3508c9287c4c40e439c2",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "synccanvas-4090c",
+          "configurations": {
+            "android": "1:787869482855:android:8fc56c9518ee6431e439c2",
+            "ios": "1:787869482855:ios:bd3508c9287c4c40e439c2"
+          }
+        }
+      }
+    }
+  }
+}
