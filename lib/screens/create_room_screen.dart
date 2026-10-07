@@ -132,9 +132,6 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                         if (value == null || value.trim().isEmpty) {
                           return 'Please enter a room name.';
                         }
-                        if (value.trim().length < 2) {
-                          return 'Room name must be at least 2 characters long.';
-                        }
                         return null;
                       },
                       onFieldSubmitted: (_) =>

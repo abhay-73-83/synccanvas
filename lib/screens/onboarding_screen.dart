@@ -136,8 +136,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           if (value == null || value.trim().isEmpty) {
                             return 'Please enter your display name.';
                           }
-                          if (value.trim().isEmpty) {
-                            return 'Name must be at least 1 characters long.';
+                          if (value.trim().length < 2) {
+                            return 'Name must be at least 2 characters long.';
                           }
                           return null;
                         },
